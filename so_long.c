@@ -6,11 +6,12 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 11:20:48 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/10 14:02:51 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/11 13:54:41 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 
 int main(int argc, char **argv)
@@ -21,13 +22,9 @@ int main(int argc, char **argv)
 	/*
 	 *check exists y .ber [X]
 	*/
-	char *srch;
-
-	srch = ft_strnstr(argv[1], ".ber", ft_strlen(argv[1]));
-	if(ft_strnstr(srch, ".ber", ft_strlen(srch)) || srch == NULL)
+	if(ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".ber", 4) != 0)
 		return /*error*/;
 	fd = open(argv[1]);
-	
 	/*
 	 * initialize structs[X]
 	 * read the map and check if is valid [V]
