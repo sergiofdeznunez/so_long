@@ -6,51 +6,59 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/10 14:03:26 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/16 14:07:12 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_ones(char *str)
+int check_ones(char *line)
 {
-	bool yes;
 	int i;
 
 	i = 0;
-	if(!str)
+	if(!line)
 		return (-1);
-	while(str[i])
+	while(line[i])
 	{
-		if(str[i] != '1')
+		if(line[i] != '1')
 			return (-1);
 		i++;
 	}
 	return (1);
 }
 
+void check_map(char char_map, t_map *map)
+{
+
+	if(!char_map || map == NULL)
+		return ;
+	if(char_map == 'C')
+		map->items++;
+	if(char_map == 'P')
+		map->pj++;
+	if(char_map == 'E')
+		map->exit++;
+}
+
+
 t_map *read_map(int fd, char *file, t_map *map)
 {
 	int i;
 	int result;
 	char *line;
-	bool check;
+	int check;
 
 	result = get_next_line(fd, &line);
 	check = check_ones(line);
-	while(result == 1 && check == true)
+	while(result == 1 && check == 1)
 	{
 		i = 1;
-		if(line[0] != '1')
+		if(line[0] != '1' || line[ft_strlen(line)] != '1')
 				return ;
-		while(str[i])
+		while(line[i])
 		{
-			if(line[i] == 'C')
-				map->items++;
-			else if(line[i] == 'P')
-				map->pj++;
-			else if(line[i] == 'E')
-				map->exit++;
+			check_map(line, map);
 			i++;
 		}
 		free(line);
@@ -59,7 +67,7 @@ t_map *read_map(int fd, char *file, t_map *map)
 	check = check_ones(line);
 	free(line);
 	close(fd);
-	if(result == 0 && check == true && map->pj == 1 && map->items >= 1 && map->exit == 1)
+	if(result == 0 && check == 1 && map->pj == 1 && map->items >= 1 && map->exit == 1)
 		return(map);
 	else
 		return NULL;
