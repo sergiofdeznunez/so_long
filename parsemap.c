@@ -58,7 +58,7 @@ t_map *read_map(int fd, char *file, t_map *map)
 				return ;
 		while(line[i])
 		{
-			check_map(line, map);
+			check_map(*(line + i), map);
 			i++;
 		}
 		free(line);

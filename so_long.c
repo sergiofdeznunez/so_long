@@ -17,7 +17,8 @@
 int main(int argc, char **argv)
 {
 	int fd;
-	t_map map;
+	t_map *map;
+	t_game *game;
 
 	if(argc == 2)
 	{
@@ -28,22 +29,27 @@ int main(int argc, char **argv)
 		return /*(error)*/;
 	fd = open(argv[1]);
 
+	/*check */
+
 	/**
 	 * initialize structs[X]
 	 * read the map and check if is valid [V]
 	*/
-	
+	initialize_structs(&game, &map);
+	game->map = read_map(fd, argv[1], &map);
+	if(game->map == NULL)
+		return /*(error)*/;
 
 	/**
 	 * game() -> no win sin items, walls, print moves, clean close window , ...
 	*/
 	}
 
-	void *wdw;
-	void *mlx;
-	
-	mlx = mlx_init();
-	wdw = mlx_new_window(wdw, 1000, 1000, "so_long");
-	mlx_loop(mlx);
-	return 0;
+	//void *wdw;
+	//void *mlx;
+	//
+	//mlx = mlx_init();
+	//wdw = mlx_new_window(wdw, 1000, 1000, "so_long");
+	//mlx_loop(mlx);
+	//return 0;
 }

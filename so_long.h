@@ -29,7 +29,9 @@ typedef struct s_game
 {
 	void *window;
 	void *mlx;
-	t_map map;
+	t_map *map;
 }			t_game;
+
+t_map *read_map(int fd, char *file, t_map *map);
 
 #endif

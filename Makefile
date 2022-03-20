@@ -20,9 +20,20 @@ OBJS = ${SRCS:.c=.o}
 
 NAME = so_long
 
+UNAME := $(shell uname)
+
+MLX_DIR = ./minilibx_opengl/minilibx_opengl
+
 $(NAME) :	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework Appkit -o $(NAME)
-			
+		ifeq ($(UNAME), Linux)
+			make -sC $(MLX_DIR)
+			make clean -sC $(MLX_DIR)
+			$(CC) $(CFLAGS) $(OBJS) -L $(MLX_DIR) $(MLX_DIR)libmlx.a -o $(NAME)
+		else
+			$(NAME) :	$(OBJS)
+				$(CC) $(CFLAGS) $(OBJS) -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework Appkit -o $(NAME)
+		endif
+
 all:	$(NAME)
 
 clean:
