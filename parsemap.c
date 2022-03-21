@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/16 14:07:12 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/21 13:50:40 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ t_map *read_map(int fd, char *file, t_map *map)
 	{
 		i = 1;
 		if(line[0] != '1' || line[ft_strlen(line)] != '1')
-				return ;
+				return NULL;
 		while(line[i])
 		{
 			check_map(*(line + i), map);
 			i++;
 		}
 		free(line);
-		result = ft_get_next_line(fd, &line);
+		result = get_next_line(fd, &line);
 	}
 	check = check_ones(line);
 	free(line);
