@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/21 13:50:08 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/22 11:16:11 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>
+#include <stdio.h>
 # include <fcntl.h>
 # include "Libft/libft.h"
 

@@ -6,7 +6,7 @@
 #    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:44:31 by snunez            #+#    #+#              #
-#    Updated: 2022/03/21 13:51:54 by snunez           ###   ########.fr        #
+#    Updated: 2022/03/22 11:30:14 by snunez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,23 +20,34 @@ OBJS = ${SRCS:.c=.o}
 
 NAME = so_long
 
-UNAME := $(shell uname)
+UNAME := $(shell uname -s)
 
-MLX_DIR = ./minilibx_opengl/minilibx_opengl
+MLX_PATH = minilibx_linux/
 
-$(NAME) :	$(OBJS)
-##		ifeq ($(UNAME), Linux)
-##			make -sC $(MLX_DIR)
-##			make clean -sC $(MLX_DIR)
-##			$(CC) $(CFLAGS) $(OBJS) -L $(MLX_DIR) $(MLX_DIR)libmlx.a -o $(NAME)
-##		else
-			$(NAME) :	$(OBJS)
-				$(CC) $(CFLAGS) $(OBJS) -I /usr/local/include -L /usr/local/lib -l mlx -framework OpenGL -framework Appkit -o $(NAME)
-##		endif
+LIBFT_PATH = Libft/
+
+LIBFT = -L$(LIBFT_PATH) $(LIBFT_PATH)libft.a
+
+ifeq ($(UNAME),Darwin)
+	MINILIBX:= -lmlx -framework OpenGL -framework AppKit
+else
+	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx
+endif
+
+$(NAME) :	mlx libft $(OBJS)
+			$(CC) $(CFLAGS) $(OBJS) $(MINILIBX) $(LIBFT) -o $(NAME)
 
 all:	$(NAME)
 
+libft:
+		make -C $(LIBFT_PATH)
+
+mlx:
+		make -C $(MLX_PATH)
+
 clean:
+		make clean -sC $(LIBFT_PATH)
+		make clean -sC $(MLX_PATH)
 		rm -f $(OBJS)
 
 fclean:	clean

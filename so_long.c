@@ -6,13 +6,11 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 11:20:48 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/21 13:48:44 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/22 11:31:39 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#
-#include <stdio.h>
 
 
 void initialize(t_game *game)
