@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/21 13:50:40 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/23 14:18:13 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void check_map(char char_map, t_map *map)
 }
 
 
-t_map *read_map(int fd, char *file, t_map *map)
+t_map *read_map(int fd, t_map *map)
 {
 	int i;
 	int result;
 	char *line;
 	int check;
-
+	
 	result = get_next_line(fd, &line);
 	check = check_ones(line);
 	while(result == 1 && check == 1)
 	{
 		i = 1;
-		if(line[0] != '1' || line[ft_strlen(line)] != '1')
+		if(line[0] != '1' && line[ft_strlen(line)] != '1')
 				return NULL;
 		while(line[i])
 		{

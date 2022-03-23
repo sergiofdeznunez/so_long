@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/22 11:16:11 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/22 12:53:08 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ typedef struct s_game
 	t_map *map;
 }			t_game;
 
-t_map *read_map(int fd, char *file, t_map *map);
+t_map *read_map(int fd, t_map *map);
 
 #endif

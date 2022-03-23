@@ -6,22 +6,27 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 11:20:48 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/22 11:31:39 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/23 14:18:12 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-void initialize(t_game *game)
+t_game *initialize_game()
 {
+	t_game *game;
+
+	game = (t_game *)malloc(1 * sizeof(t_game));
+	game->window = NULL;
+	game ->mlx = NULL;
 	game->map = (t_map *)malloc(1 * sizeof(t_map));
 	game->map->items = 0;
 	game->map->pj = 0;
 	game->map->exit = 0;
-	game = (t_game *)malloc(1 * sizeof(t_game));
-	game->window = NULL;
-	game ->mlx = NULL;
+
+	return (game);
+	
 	/* IMPORTANT_TODO:  FREE AT ANY TIME */
 }
 
@@ -44,10 +49,14 @@ int main(int argc, char **argv)
 	 * initialize structs[X]
 	 * read the map and check if is valid [V]
 	*/
-	initialize(game);
-	game->map = read_map(fd, argv[1], game->map);
+	game = initialize_game();
+	game->map = read_map(fd, game->map);
 	if(game->map == NULL)
+	{
+		printf("invalid map\n");
 		return (-1);
+	}
+	printf("valid map\n");
 	return (0);
 	/**
 	 * game() -> no win sin items, walls, print moves, clean close window , ...

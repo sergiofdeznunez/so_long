@@ -6,7 +6,7 @@
 #    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:44:31 by snunez            #+#    #+#              #
-#    Updated: 2022/03/22 11:30:14 by snunez           ###   ########.fr        #
+#    Updated: 2022/03/22 11:44:32 by snunez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ else
 endif
 
 $(NAME) :	mlx libft $(OBJS)
+			make clean -sC $(LIBFT_PATH)
+##			make clean -sC $(MLX_PATH)
 			$(CC) $(CFLAGS) $(OBJS) $(MINILIBX) $(LIBFT) -o $(NAME)
 
 all:	$(NAME)
