@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 11:20:48 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/23 14:18:12 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/24 11:58:27 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	if (fd == -1)
 		return(-1);
 	/**
-	 * initialize structs[X]
+	 * initialize structs[V]
 	 * read the map and check if is valid [V]
 	*/
 	game = initialize_game();
@@ -57,10 +57,10 @@ int main(int argc, char **argv)
 		return (-1);
 	}
 	printf("valid map\n");
-	return (0);
 	/**
 	 * game() -> no win sin items, walls, print moves, clean close window , ...
 	*/
+	return (0);
 	}
 
 	//void *wdw;

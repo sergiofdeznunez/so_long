@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/23 14:18:13 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/24 11:46:10 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ t_map *read_map(int fd, t_map *map)
 	while(result == 1 && check == 1)
 	{
 		i = 1;
-		if(line[0] != '1' && line[ft_strlen(line)] != '1')
+		if(line[0] != '1' || line[ft_strlen(line) - 1] != '1')
+		{
 				return NULL;
+		}
 		while(line[i])
 		{
 			check_map(*(line + i), map);

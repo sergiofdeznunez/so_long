@@ -6,7 +6,7 @@
 #    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:44:31 by snunez            #+#    #+#              #
-#    Updated: 2022/03/22 11:44:32 by snunez           ###   ########.fr        #
+#    Updated: 2022/03/24 11:55:08 by snunez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LIBFT = -L$(LIBFT_PATH) $(LIBFT_PATH)libft.a
 ifeq ($(UNAME),Darwin)
 	MINILIBX:= -lmlx -framework OpenGL -framework AppKit
 else
-	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx
+	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx -lXext -lX11
 endif
 
 $(NAME) :	mlx libft $(OBJS)
