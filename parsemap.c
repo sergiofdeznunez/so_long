@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/24 11:46:10 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/28 12:27:06 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,31 @@ void check_map(char char_map, t_map *map)
 t_map *read_map(int fd, t_map *map)
 {
 	int i;
+	int j;
 	int result;
-	char *line;
 	int check;
 	
-	result = get_next_line(fd, &line);
-	check = check_ones(line);
+	i = 0;
+	result = get_next_line(fd, map->map);
+	check = check_ones(map->map[i]);
 	while(result == 1 && check == 1)
 	{
-		i = 1;
-		if(line[0] != '1' || line[ft_strlen(line) - 1] != '1')
+		j = 1;
+		if(map->map[i][0] != '1' || map->map[i][ft_strlen(map->map[i]) - 1] != '1')
+			return NULL;
+		while(map->map[i][j])
 		{
-				return NULL;
+			check_map(map->map[i][j], map);
+			j++;
 		}
-		while(line[i])
-		{
-			check_map(*(line + i), map);
-			i++;
-		}
-		free(line);
-		result = get_next_line(fd, &line);
+		result = get_next_line(fd, map->map);
+		i++;
 	}
-	check = check_ones(line);
-	free(line);
+	check = check_ones(map->map[i]);
 	close(fd);
 	if(result == 0 && check == 1 && map->pj == 1 && map->items >= 1 && map->exit == 1)
 		return(map);
 	else
 		return NULL;
+		/* TODO: FREE **MAP */
 }

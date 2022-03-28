@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/22 12:53:08 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/28 14:44:50 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_map
 {
+	char **map;
 	int items;
 	int pj;
 	int exit;
@@ -29,8 +30,15 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	void *window;
 	void *mlx;
+	void *window;
+	void *floor;
+	void *wall;
+	void *pj;
+	void *item;
+	void *exit;
+	int img_width;
+	int img_height;
 	t_map *map;
 }			t_game;
 
