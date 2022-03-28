@@ -15,10 +15,12 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <mlx.h>
-#include <stdio.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include "Libft/libft.h"
+# include <mlx.h>
+//# include "minilibx_linux/mlx.h"
+
 
 typedef struct s_map
 {
@@ -26,6 +28,8 @@ typedef struct s_map
 	int items;
 	int pj;
 	int exit;
+	int width; //ancho
+	int height; //alto
 }			t_map;
 
 typedef struct s_game
@@ -37,11 +41,10 @@ typedef struct s_game
 	void *pj;
 	void *item;
 	void *exit;
-	int img_width;
-	int img_height;
-	t_map *map;
+	void *map;
 }			t_game;
 
 t_map *read_map(int fd, t_map *map);
+t_map *save_map(int fd, t_map *map);
 
 #endif
