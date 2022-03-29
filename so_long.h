@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/28 14:44:50 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/29 13:46:25 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@ typedef struct s_game
 
 t_map *read_map(int fd, t_map *map);
 t_map *save_map(int fd, t_map *map);
-
+void get_images(t_game *game);
+void put_image(char c, t_game *game, int i, int j);
+void draw_map(t_map *map, t_game *game);
+void initialize_game(t_map *map);
 #endif

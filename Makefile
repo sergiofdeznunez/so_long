@@ -6,13 +6,13 @@
 #    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:44:31 by snunez            #+#    #+#              #
-#    Updated: 2022/03/28 13:01:33 by snunez           ###   ########.fr        #
+#    Updated: 2022/03/29 12:20:50 by snunez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -fsanitize=adress
+FLAGS = -Wall -Werror -Wextra
 
 SRCS = so_long.c parsemap.c
 
@@ -22,21 +22,21 @@ NAME = so_long
 
 UNAME := $(shell uname -s)
 
-MLX_PATH = minilibx_linux/
-
 LIBFT_PATH = Libft/
 
 LIBFT = -L$(LIBFT_PATH) $(LIBFT_PATH)libft.a
 
 ifeq ($(UNAME),Darwin)
+	MLX_PATH = minilibx_opengl/
 	MINILIBX:= -lmlx -framework OpenGL -framework AppKit
 else
+	MLX_PATH = minilibx_linux
 	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx -lXext -lX11
 endif
 
 $(NAME) :	mlx libft $(OBJS)
 			make clean -sC $(LIBFT_PATH)
-##			make clean -sC $(MLX_PATH)
+			make clean -sC $(MLX_PATH)
 			$(CC) $(CFLAGS) $(OBJS) $(MINILIBX) $(LIBFT) -o $(NAME)
 
 all:	$(NAME)
