@@ -16,48 +16,55 @@
 void get_images(t_game *game)
 {
 	int size;
+	char *data[5];
 
 	size = 32;
-	game->floor = mlx_xpm_file_to_image(game->mlx, "./textures/floor.xpm", &size, &size);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "./textures/wall.xpm", &size, &size);
-	game->pj = mlx_xpm_file_to_image(game->mlx, "./textures/avatar.xpm", &size, &size);
-	game->item = mlx_xpm_file_to_image(game->mlx, "./textures/item.xpm", &size, &size);
-	game->exit = mlx_xpm_file_to_image(game->mlx, "./textures/door.xpm", &size, &size);
+	data[0] = "./textures/floor.xpm";
+	data[1] = "./textures/wall.xpm";
+	data[2] = "./textures/avatar.xpm";
+	data[3] = "./textures/item.xpm";
+	data[4] = "./textures/door.xpm";
+
+	game->floor = mlx_xpm_file_to_image(game->mlx, data[0], &size, &size);
+	game->wall = mlx_xpm_file_to_image(game->mlx, data[1], &size, &size);
+	game->pj = mlx_xpm_file_to_image(game->mlx, data[2], &size, &size);
+	game->item = mlx_xpm_file_to_image(game->mlx, data[3], &size, &size);
+	game->exit = mlx_xpm_file_to_image(game->mlx, data[4], &size, &size);
 }
 
-void put_image(char c, t_game *game, int i, int j)
+void put_image(char c, t_game *game, size_t i, size_t j)
 {
 
-	int factorized_i;
-	int factorized_j;
+	size_t ni;
+	size_t nj;
 
-	factorized_i = i * 32;
-	factorized_j = j * 32;
+	ni = i * 32;
+	nj = j * 32;
+	
+	mlx_put_image_to_window(game->mlx, game->window, game->floor, ni, nj);
 
 	if(c == '1')
-		mlx_put_image_to_window(game->mlx, game->window,  game->wall, factorized_i, factorized_j);
-	if(c == '0')
-		mlx_put_image_to_window(game->mlx, game->window, game->floor, factorized_i, factorized_j);
-	if(c == 'P')
-		mlx_put_image_to_window(game->mlx, game->window, game->pj, factorized_i, factorized_j);
-	if(c == 'C')
-		mlx_put_image_to_window(game->mlx, game->window, game->item, factorized_i, factorized_j);
-	if(c == 'E')
-		mlx_put_image_to_window(game->mlx, game->window, game->exit, factorized_i, factorized_j);
+		mlx_put_image_to_window(game->mlx, game->window,  game->wall, ni, nj);
+	else if(c == 'P')
+		mlx_put_image_to_window(game->mlx, game->window, game->pj, ni, nj);
+	else if(c == 'C')
+		mlx_put_image_to_window(game->mlx, game->window, game->item, ni, nj);
+	else if(c == 'E')
+		mlx_put_image_to_window(game->mlx, game->window, game->exit, ni, nj);
 }
 
 void draw_map(t_map *map, t_game *game)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	i = 0;
-	j = 0;
 	while(map->map[i] && i < map->height)
 	{
+		j = 0;
 		while(map->map[i][j] && j < map->width)
 		{
-			put_imgage(map->map[i][j], game, i, j);
+			put_image(map->map[i][j], game, j, i);
 			j++;
 		}
 		i++;
@@ -137,7 +144,6 @@ int main(int argc, char **argv)
 		 * 
 		*/
 		initialize_game(info_mapa);
-		printf("initialized correctly\n");
 
 		return (0);
 	}

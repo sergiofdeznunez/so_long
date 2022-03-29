@@ -30,13 +30,11 @@ ifeq ($(UNAME),Darwin)
 	MLX_PATH = minilibx_opengl/
 	MINILIBX:= -lmlx -framework OpenGL -framework AppKit
 else
-	MLX_PATH = minilibx_linux
+	MLX_PATH = minilibx_linux/
 	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx -lXext -lX11
 endif
 
 $(NAME) :	mlx libft $(OBJS)
-			make clean -sC $(LIBFT_PATH)
-			make clean -sC $(MLX_PATH)
 			$(CC) $(CFLAGS) $(OBJS) $(MINILIBX) $(LIBFT) -o $(NAME)
 
 all:	$(NAME)
