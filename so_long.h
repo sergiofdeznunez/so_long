@@ -27,6 +27,9 @@ typedef struct s_map
 	char **map;
 	int items;
 	int pj;
+	int pj_x;
+	int pj_y;
+	int it_collected;
 	int exit;
 	int width; //ancho
 	int height; //alto

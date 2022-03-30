@@ -37,7 +37,9 @@ void put_image(char c, t_game *game, size_t i, size_t j)
 
 	size_t ni;
 	size_t nj;
+	t_map *map;
 
+	map = game->map;
 	ni = i * 32;
 	nj = j * 32;
 	
@@ -45,8 +47,13 @@ void put_image(char c, t_game *game, size_t i, size_t j)
 
 	if(c == '1')
 		mlx_put_image_to_window(game->mlx, game->window,  game->wall, ni, nj);
-	else if(c == 'P')
+	else if(c == 'P' || (map->pj_x != 0 && map->pj_y != 0 && map->pj_x == i && map->pj_y == j))
+	{
 		mlx_put_image_to_window(game->mlx, game->window, game->pj, ni, nj);
+		map->pj_x = j;
+		map->pj_y = i;
+		map->map[i][j] = '0';
+	}
 	else if(c == 'C')
 		mlx_put_image_to_window(game->mlx, game->window, game->item, ni, nj);
 	else if(c == 'E')
@@ -92,7 +99,7 @@ void initialize_game(t_map *map)
 int main(int argc, char **argv)
 {
 	int fd;
-	t_map	*info_mapa; 
+	t_map	*_map; 
 
 	if(argc == 2)
 	{
@@ -108,23 +115,23 @@ int main(int argc, char **argv)
 		 * initialize structs[V]
 		 * read the map and check if is valid [V]
 		*/
-		info_mapa = (t_map *)malloc(1 * sizeof(t_map)); //error
-		ft_bzero(info_mapa, sizeof(t_map));
-		info_mapa = read_map(fd, info_mapa);
+		_map = (t_map *)malloc(1 * sizeof(t_map)); //error
+		ft_bzero(_map, sizeof(t_map));
+		_map = read_map(fd, _map);
 		fd = open(argv[1], O_RDONLY);
-		info_mapa = save_map(fd, info_mapa);
-		if(info_mapa->map == NULL)
+		_map = save_map(fd, _map);
+		if(_map->map == NULL)
 		{
 			printf("invalid map\n");
 			return (-1);
 		}
 		printf("valid map\n");
-		//test_map(info_mapa->map);
+		//test_map(_map->map);
 		/**
 		 * game(no win sin items, walls, print moves, clean close window , ...)
 		 * 
 		*/
-		initialize_game(info_mapa);
+		initialize_game(_map);
 
 		return (0);
 	}
