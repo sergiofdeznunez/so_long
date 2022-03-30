@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/03/29 13:46:25 by snunez           ###   ########.fr       */
+/*   Updated: 2022/03/30 12:54:12 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "Libft/libft.h"
-//# include <mlx.h>
-# include "minilibx_linux/mlx.h"
+# include <mlx.h>
+//# include "minilibx_linux/mlx.h"
 
 
 typedef struct s_map
