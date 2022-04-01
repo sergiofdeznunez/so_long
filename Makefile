@@ -6,7 +6,7 @@
 #    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:44:31 by snunez            #+#    #+#              #
-#    Updated: 2022/03/29 12:20:50 by snunez           ###   ########.fr        #
+#    Updated: 2022/04/01 14:05:00 by snunez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = gcc
 
 FLAGS = -Wall -Werror -Wextra
 
-SRCS = so_long.c parsemap.c
+SRCS = so_long.c parsemap.c moves.c hook.c
 
 OBJS = ${SRCS:.c=.o}
 
