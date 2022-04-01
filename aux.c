@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,25 +16,28 @@ void	end_game(t_game *game)
 {
 	t_map	*map;
 
-	map = game->map;
+	map = (t_map *)game->map;
+
 	mlx_clear_window(game->mlx, game->window);
 	mlx_destroy_window(game->mlx, game->window);
-	ft_free_double_pointer(map->map);
+	ft_free_double_pointer((void **)map->map);
 	free(map);
 	free(game);
+	system("leaks so_long");
 	exit(EXIT_SUCCESS);
 }
 
-void	key_hooks(int key, t_game *game)
+void	key_hooks(int key, t_game **game)
 {
+	printf("key hok activated \n");
 	if (key == KEY_ESC)
-		end_game(game);
+		end_game(*game);
 	else if (key == KEY_W || key == KEY_UP)
-		move_up(game);
+		move_up(*game);
 	else if (key == KEY_A || key == KEY_LEFT)
-		move_left(game);
+		move_left(*game);
 	else if (key == KEY_S || key == KEY_DOWN)
-		move_down(game);
+		move_down(*game);
 	else if (key == KEY_D || key == KEY_RIGHT)
-		move_right(game);
+		move_right(*game);
 }

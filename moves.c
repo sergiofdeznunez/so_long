@@ -25,17 +25,17 @@ void	move(t_game *game, char dir)
 		map->pj_y--;
 	if (dir == 'd')
 		map->pj_y++;
+
+	printf("Moves -> %i\n", ++game->moves);
 	mlx_clear_window(game->mlx, game->window);
 	draw_map(map, game);
-	
-	/*Print moves and more to do*/
 }
 
 void	move_left(t_game *game)
 {
 	t_map	*map;
 
-	map = game->map;
+	map = (t_map *)game->map;
 	if (map->map[map->pj_y][map->pj_x - 1] == '0')
 		move(game, 'l');
 	else if (map->map[map->pj_y][map->pj_x - 1] == 'C')
@@ -53,7 +53,7 @@ void	move_right(t_game *game)
 {
 	t_map	*map;
 
-	map = game->map;
+	map = (t_map *)game->map;
 	if (map->map[map->pj_y][map->pj_x + 1] == '0')
 		move(game, 'r');
 	else if (map->map[map->pj_y][map->pj_x + 1] == 'C')
@@ -71,7 +71,7 @@ void	move_down(t_game *game)
 {
 	t_map	*map;
 
-	map = game->map;
+	map = (t_map *)game->map;
 	if (map->map[map->pj_y + 1][map->pj_x] == '0')
 		move(game, 'd');
 	else if (map->map[map->pj_y + 1][map->pj_x] == 'C')
@@ -89,7 +89,7 @@ void	move_up(t_game *game)
 {
 	t_map	*map;
 
-	map = game->map;
+	map = (t_map *)game->map;
 	if (map->map[map->pj_y - 1][map->pj_x] == '0')
 		move(game, 'u');
 	else if (map->map[map->pj_y - 1][map->pj_x] == 'C')

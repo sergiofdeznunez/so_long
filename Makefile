@@ -12,9 +12,9 @@
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
-SRCS = so_long.c parsemap.c moves.c hook.c
+SRCS = so_long.c parsemap.c moves.c aux.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -28,7 +28,7 @@ LIBFT = -L$(LIBFT_PATH) $(LIBFT_PATH)libft.a
 
 ifeq ($(UNAME),Darwin)
 	MLX_PATH = minilibx_opengl/
-	MINILIBX:= -lmlx -framework OpenGL -framework AppKit
+	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx -framework OpenGL -framework AppKit
 else
 	MLX_PATH = minilibx_linux/
 	MINILIBX:= -L $(MLX_PATH) $(MLX_PATH)libmlx.a -lmlx -lXext -lX11

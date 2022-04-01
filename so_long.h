@@ -18,28 +18,29 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "Libft/libft.h"
-# include <mlx.h>
-//# include "minilibx_linux/mlx.h"
+//# include <mlx.h>
+# include "minilibx_linux/mlx.h"
 
 //# linux
-//# define KEY_ESC 65307
-//# define KEY_W 119
-//# define KEY_A 97
-//# define KEY_S 115
-//# define KEY_D 100
-//# define KEY_LEFT 65361
-//# define KEY_UP 65362
-//# define KEY_RIGHT 65363
-//# define KEY_DOWN 65364
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_LEFT 123
-# define KEY_UP 126
-# define KEY_RIGHT 124
-# define KEY_DOWN 125
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_UP 65362
+# define KEY_RIGHT 65363
+# define KEY_DOWN 65364
+//# MacOS
+//# define KEY_ESC 53
+//# define KEY_W 13
+//# define KEY_A 0
+//# define KEY_S 1
+//# define KEY_D 2
+//# define KEY_LEFT 123
+//# define KEY_UP 126
+//# define KEY_RIGHT 124
+//# define KEY_DOWN 125
 
 typedef struct s_map
 {
@@ -50,8 +51,8 @@ typedef struct s_map
 	int		pj_y;
 	int		it_collected;
 	int		exit;
-	int		width; //ancho
-	int		height; //alto
+	int		width;
+	int		height;
 }			t_map;
 
 typedef struct s_game
@@ -63,6 +64,7 @@ typedef struct s_game
 	void	*pj;
 	void	*item;
 	void	*exit;
+	int		moves;
 	void	*map;
 }			t_game;
 
@@ -78,5 +80,5 @@ void	move_right(t_game *game);
 void	move_down(t_game *game);
 void	move_up(t_game *game);
 void	end_game(t_game *game);
-void	key_hooks(int key, t_game *game);
+void	key_hooks(int key, t_game **game);
 #endif

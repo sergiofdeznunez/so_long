@@ -28,16 +28,21 @@ int	check_ones(char *line)
 	return (1);
 }
 
-void	check_map(char char_map, t_map *map)
+void	check_map(char char_map, t_map *map, int j)
 {
 
 	if (!char_map || map == NULL)
 		return ;
-	if (char_map == 'C')
+	else if (char_map == 'C')
 		map->items++;
-	if (char_map == 'P')
+	else if (char_map == 'P')
+	{
 		map->pj++;
-	if (char_map == 'E')
+		map->pj_y = map->height - 1;
+		map->pj_x = j;
+
+	}
+	else if (char_map == 'E')
 		map->exit++;
 }
 
@@ -82,7 +87,7 @@ t_map	*read_map(int fd, t_map *map)
 			return (NULL);
 		while (line[j])
 		{
-			check_map(line[j], map);
+			check_map(line[j], map, j);
 			j++;
 		}
 		free(line);
