@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:04:57 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/01 14:08:14 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/06 18:51:01 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@ void	end_game(t_game *game)
 	t_map	*map;
 
 	map = (t_map *)game->map;
-
 	mlx_clear_window(game->mlx, game->window);
 	mlx_destroy_window(game->mlx, game->window);
 	ft_free_double_pointer((void **)map->map);
 	free(map);
 	free(game);
-	system("leaks so_long");
+	exit(EXIT_SUCCESS);
+}
+
+void	close_window(t_game *game)
+{
+	(void)game;
 	exit(EXIT_SUCCESS);
 }
 
 void	key_hooks(int key, t_game **game)
 {
-	printf("key hok activated \n");
 	if (key == KEY_ESC)
 		end_game(*game);
 	else if (key == KEY_W || key == KEY_UP)

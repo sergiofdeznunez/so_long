@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:10:58 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/01 13:26:48 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/06 17:10:29 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	move(t_game *game, char dir)
 		map->pj_y--;
 	if (dir == 'd')
 		map->pj_y++;
-
 	printf("Moves -> %i\n", ++game->moves);
 	mlx_clear_window(game->mlx, game->window);
 	draw_map(map, game);
