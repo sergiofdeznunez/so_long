@@ -31,6 +31,21 @@ void	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
+void	ft_exit(t_map *map)
+{
+	printf("Error: not a valid map\n");
+	free(map);
+	exit(1);
+}
+
+void	ft_exit_free(t_map *map)
+{
+	printf("Error with the map, freeing ...\n");
+	ft_free_double_pointer((void **)map->map);
+	free(map);
+	exit(1);
+}
+
 void	key_hooks(int key, t_game **game)
 {
 	if (key == KEY_ESC)

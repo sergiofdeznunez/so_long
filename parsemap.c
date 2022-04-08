@@ -32,7 +32,7 @@ void	check_map(char char_map, t_map *map, int j)
 {
 	if (!char_map || map == NULL || (char_map != '0' && char_map != '1' && \
 	char_map != 'C' && char_map != 'P' && char_map != 'E'))
-		return ft_exit();
+		return ft_exit(map);
 	else if (char_map == 'C')
 		map->items++;
 	else if (char_map == 'P')

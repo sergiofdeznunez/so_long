@@ -88,12 +88,6 @@ void	initialize_game(t_map *map)
 	mlx_loop(game->mlx);
 }
 
-void ft_exit()
-{
-	printf("Error: not a valid map\n");
-	exit(1);
-}
-
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -102,7 +96,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".ber", 4) != 0)
-			return (printf("Not a valid file\n"));
+			return (printf("Error: Not a valid file\n"));
 		fd = open(argv[1], O_RDONLY);
 		if (fd == -1)
 			return (printf("Error opening the file\n"));
@@ -110,13 +104,12 @@ int	main(int argc, char **argv)
 		ft_bzero(_map, sizeof(t_map));
 		_map = read_map(fd, _map);
 		if (!_map)
-			ft_exit();
+			ft_exit(_map);
 		fd = open(argv[1], O_RDONLY);
 		_map = save_map(fd, _map);
 		_map->map[_map->pj_y][_map->pj_x] = '0';
-		ft_putchar_fd(_map->map[_map->pj_y][_map->pj_x], 1);
 		if (_map->map == NULL)
-			return (printf("Invalid map\n"));
+			ft_exit_free(_map);
 		initialize_game(_map);
 		return (0);
 	}
