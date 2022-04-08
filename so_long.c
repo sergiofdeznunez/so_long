@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 11:20:48 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/06 18:54:43 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:26:54 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ void	initialize_game(t_map *map)
 	mlx_loop(game->mlx);
 }
 
+void ft_exit()
+{
+	printf("Error: not a valid map\n");
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -103,6 +109,8 @@ int	main(int argc, char **argv)
 		_map = (t_map *)malloc(1 * sizeof(t_map));
 		ft_bzero(_map, sizeof(t_map));
 		_map = read_map(fd, _map);
+		if (!_map)
+			ft_exit();
 		fd = open(argv[1], O_RDONLY);
 		_map = save_map(fd, _map);
 		_map->map[_map->pj_y][_map->pj_x] = '0';

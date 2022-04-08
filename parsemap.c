@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/06 19:09:52 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:37:00 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	check_ones(char *line)
 
 void	check_map(char char_map, t_map *map, int j)
 {
-	if (!char_map || map == NULL)
-		return ;
+	if (!char_map || map == NULL || (char_map != '0' && char_map != '1' && \
+	char_map != 'C' && char_map != 'P' && char_map != 'E'))
+		return ft_exit();
 	else if (char_map == 'C')
 		map->items++;
 	else if (char_map == 'P')
@@ -70,6 +71,8 @@ t_map	*final_check(char **line, int fd, int result, t_map *map)
 {
 	int	check;
 
+	if ((size_t)map->width != ft_strlen(*line))
+		return (NULL);
 	check = check_ones(*line);
 	free(*line);
 	close(fd);

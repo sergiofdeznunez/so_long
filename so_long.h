@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/06 19:16:48 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/08 14:25:57 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ void	move_up(t_game *game);
 void	end_game(t_game *game);
 void	key_hooks(int key, t_game **game);
 void	close_window(t_game *game);
+void	ft_exit();
 #endif

@@ -6,13 +6,13 @@
 #    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/28 11:44:31 by snunez            #+#    #+#              #
-#    Updated: 2022/04/06 18:24:57 by snunez           ###   ########.fr        #
+#    Updated: 2022/04/08 13:23:03 by snunez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 
 SRCS = so_long.c parsemap.c moves.c aux.c
 
