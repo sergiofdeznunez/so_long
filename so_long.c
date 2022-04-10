@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 11:20:48 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/08 14:26:54 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/10 16:55:21 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	main(int argc, char **argv)
 		ft_bzero(_map, sizeof(t_map));
 		_map = read_map(fd, _map);
 		if (!_map)
-			ft_exit(_map);
+			ft_exit(&_map);
 		fd = open(argv[1], O_RDONLY);
 		_map = save_map(fd, _map);
 		_map->map[_map->pj_y][_map->pj_x] = '0';

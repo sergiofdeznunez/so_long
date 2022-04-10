@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:25:21 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/08 14:25:57 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/10 16:53:51 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@
 # include "minilibx_linux/mlx.h"
 
 //# linux
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_LEFT 65361
-# define KEY_UP 65362
-# define KEY_RIGHT 65363 
-# define KEY_DOWN 65364
+//# define KEY_ESC 65307
+//# define KEY_W 119
+//# define KEY_A 97
+//# define KEY_S 115
+//# define KEY_D 100
+//# define KEY_LEFT 65361
+//# define KEY_UP 65362
+//# define KEY_RIGHT 65363 
+//# define KEY_DOWN 65364
 
 //# MacOS
-//# define KEY_ESC 53
-//# define KEY_W 13
-//# define KEY_A 0
-//# define KEY_S 1
-//# define KEY_D 2
-//# define KEY_LEFT 123
-//# define KEY_UP 126
-//# define KEY_RIGHT 124
-//# define KEY_DOWN 125
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_LEFT 123
+# define KEY_UP 126
+# define KEY_RIGHT 124
+# define KEY_DOWN 125
 
 typedef struct s_map
 {
@@ -83,6 +83,6 @@ void	move_up(t_game *game);
 void	end_game(t_game *game);
 void	key_hooks(int key, t_game **game);
 void	close_window(t_game *game);
-void	ft_exit(t_map *map);
+void	ft_exit(t_map **map);
 void	ft_exit_free(t_map *map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 13:38:11 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/08 14:37:00 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/10 17:40:30 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_map(char char_map, t_map *map, int j)
 {
 	if (!char_map || map == NULL || (char_map != '0' && char_map != '1' && \
 	char_map != 'C' && char_map != 'P' && char_map != 'E'))
-		return ft_exit(map);
+		return (ft_exit(&map));
 	else if (char_map == 'C')
 		map->items++;
 	else if (char_map == 'P')
@@ -67,20 +67,27 @@ t_map	*save_map(int fd, t_map *map)
 		return (NULL);
 }
 
-t_map	*final_check(char **line, int fd, int result, t_map *map)
+t_map	*final_check(char *line, int fd, int result, t_map *map)
 {
 	int	check;
 
-	if ((size_t)map->width != ft_strlen(*line))
-		return (NULL);
-	check = check_ones(*line);
-	free(*line);
+	if ((size_t)map->width != ft_strlen(line))
+	{
+		free(line);
+		printf("Error: not a valid map\n");
+		exit(1);
+	}
+	check = check_ones(line);
+	free(line);
 	close(fd);
 	if (result == 0 && check == 1 && map->pj == 1 && map->items >= 1 && \
 	map->exit == 1)
 		return (map);
 	else
-		return (NULL);
+	{
+		printf("Final check error: not a valid map\n");
+		exit(1);
+	}
 }
 
 t_map	*read_map(int fd, t_map *map)
@@ -100,7 +107,7 @@ t_map	*read_map(int fd, t_map *map)
 		map->height++;
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1' || \
 		ft_strlen(line) != (size_t)map->width)
-			return (NULL);
+			ft_exit(&map);
 		while (line[++j])
 			check_map(line[j], map, j);
 		free(line);
@@ -108,5 +115,5 @@ t_map	*read_map(int fd, t_map *map)
 	}
 	if (result == 0)
 		map->height++;
-	return (final_check(&line, fd, result, map));
+	return (final_check(line, fd, result, map));
 }

@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 12:04:57 by snunez            #+#    #+#             */
-/*   Updated: 2022/04/06 18:51:01 by snunez           ###   ########.fr       */
+/*   Updated: 2022/04/10 17:39:08 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	close_window(t_game *game)
 	exit(EXIT_SUCCESS);
 }
 
-void	ft_exit(t_map *map)
+void	ft_exit(t_map **map)
 {
 	printf("Error: not a valid map\n");
-	free(map);
+	free(*map);
 	exit(1);
 }
 
